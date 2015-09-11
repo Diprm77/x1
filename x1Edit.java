@@ -5,6 +5,7 @@
 float x, y;       // Position of creature.
 float dx, dy;     // Speed.
 float horizon;
+float cloudX = 50,cloudY = 50,cloudW = 100,cloudH = 40;
 
 //// SETUP:  window size, initialization (start in middle of screen).
 void setup() {
@@ -22,17 +23,27 @@ void draw() {
   background( 100,150,200 );                // sky
   fill( 255,255,0 );
   ellipse( width*3/4, height/8, 40,40 );    // sun
-  // Grass
+  
+  noStroke();
+  fill(0,100,200);
+  ellipse (cloudX,cloudY,cloudW,cloudH);// Grass
+  cloudX= (cloudX +3);
+  
+  stroke(0);
   fill( 100,200,100 );
   rect( 0,horizon, width,height*3/4 );      // grass.
   
   /* INSERT YOUR CODE HERE! */
-  triangle( 150,horizon, 120,horizon-50, 180,horizon-50  );  // tree
+  triangle( 150,horizon, 120,horizon-50, 180,horizon-50  ); // More crappy trees
+  triangle( 300,horizon, 260,horizon-50, 320,horizon-50  ); // """
+  triangle( 400,horizon, 350,horizon-50, 420,horizon-50  );// tree
   text( "This is NOT a good tree; please fix it!", 150,horizon );
                                             // house
 
   fill(0);
-  text( "My name is Mud", 10,height-20 );                                          
+  text( "My name is Mud", 10,height-20 );    
+if (mousePressed) {exit();} 
+ellipse(mouseX,mouseY, 10,10);   /// start of worm 
                                             
   //// ACTION:  move (x,y) coordinates.
   x=  x + dx;
